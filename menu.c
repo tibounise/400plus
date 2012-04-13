@@ -7,6 +7,7 @@
 #include "presets.h"
 #include "utils.h"
 #include "debug.h"
+#include "help.h"
 
 #include "menu.h"
 
@@ -62,7 +63,8 @@ void menu_create(type_MENU *menu) {
 
 	status.menu_running = TRUE;
 
-	FLAG_GUI_MODE = 0x2D; // In theory, we do not need this, but menu_close does not work properly without it...
+	//FLAG_GUI_MODE = 0x2D; // In theory, we do not need this, but menu_close does not work properly without it...
+	FLAG_GUI_MODE = GUIMODE_400PLUS; // In theory, we do not need this, but menu_close does not work properly without it...
 	//cameraMode->gui_mode = 0x2D; // this is not the same as FLAG_GUI_MODE, but so far i do not see what it does
 
 	current_menu    = menu;
@@ -88,18 +90,18 @@ void menu_create(type_MENU *menu) {
 }
 
 void menu_close() {
-    GUI_Lock();
-    GUI_PalleteInit();
+	GUI_Lock();
+	GUI_PalleteInit();
 
 	DeleteDialogBox(menu_handler);
 	menu_handler = NULL;
 
 	GUI_StartMode(GUIMODE_OLC);
-    CreateDialogBox_OlMain();
-    GUIMode = GUIMODE_OLC;
+	CreateDialogBox_OlMain();
+	GUIMode = GUIMODE_OLC;
 
-    GUI_UnLock();
-    GUI_PalleteUnInit();
+	GUI_UnLock();
+	GUI_PalleteUnInit();
 }
 
 void menu_initialize() {
@@ -224,6 +226,21 @@ void menu_event(type_MENU_EVENT event) {
 		page->tasks[event](menu);
 	else if (menu->tasks && menu->tasks[event])
 		menu->tasks[event](menu);
+}
+
+void menu_help(type_MENU *menu) {
+	type_MENUPAGE *page = menu->current_page;
+	type_MENUITEM *item = get_current_item(page);
+
+	if (item && item->name) {
+		char * help_str = help_get_str(item->name);
+		if (help_str) {
+			help_dlg_create(help_str);
+			debug_log("HELP: [%s] %s", item->name, help_str);
+		} else {
+			debug_log("HELP: [%s] NOT FOUND", item->name);
+		}
+	}
 }
 
 void menu_set(type_MENU *menu) {

@@ -217,7 +217,7 @@ void intercom_proxy(const int handler, char *message) {
 	// Use fictitious GUI modes so everything else fits nicely
 	if (FLAG_FACE_SENSOR && FLAG_GUI_MODE == GUIMODE_OFF)
 		gui_mode = GUIMODE_FACE;
-	else if(status.menu_running)
+	else if(status.menu_running && FLAG_GUI_MODE != 0x30) // 0x30 is help dialog
 		gui_mode = GUIMODE_400PLUS;
 	else
 		gui_mode = FLAG_GUI_MODE;

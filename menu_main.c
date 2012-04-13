@@ -54,6 +54,7 @@ type_MENU menu_main = {
 		[MENU_EVENT_REFRESH] = menupage_refresh,
 		[MENU_EVENT_CLOSE]   = menu_main_save,
 		[MENU_EVENT_AV]      = list_display,
+		[MENU_EVENT_DP]      = menu_help,
 	}
 };
 

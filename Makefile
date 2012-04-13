@@ -72,6 +72,7 @@ C_OBJS := init.o          \
          tasks.o          \
          ini.o            \
          languages.o      \
+	 help.o           \
          utils.o          \
          memspy.o         \
          menu.o           \
