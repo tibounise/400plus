@@ -164,6 +164,7 @@
 	LANG_PAIR( I_DELETE_CMODES,      "Delete custom modes"       ) \
 	LANG_PAIR( I_QEXP_MINTV,         "Min Tv"                    ) \
 	LANG_PAIR( I_QEXP_WEIGTH,        "Weight"                    ) \
+	LANG_PAIR( I_TAKE_SCREENSHOT,    "Take a screenshot"         ) \
 	LANG_PAIR( V_BOTH,               "Both"                      ) \
 	LANG_PAIR( V_AV,                 "Av"                        ) \
 	LANG_PAIR( V_TV,                 "Tv"                        ) \

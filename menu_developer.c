@@ -21,6 +21,7 @@
 #include "utils.h"
 #include "settings.h"
 #include "memspy.h"
+#include "screenshot.h"
 
 #include "menu_developer.h"
 
@@ -38,6 +39,7 @@ void menupage_developer_print_info(const menuitem_t *menuitem);
 	MENUITEM_LAUNCH( MENUPAGE_DEVEL_PRINT,         LP_WORD(L_I_PRINT_INFO),          menupage_developer_print_info),
 	MENUITEM_BOOLEAN(MENUPAGE_DEVEL_DEBUG,         LP_WORD(L_I_DEBUG_ON_POWERON),   &settings.debug_on_poweron, NULL),
 	MENUITEM_LOGFILE(MENUPAGE_DEVEL_MODE,          LP_WORD(L_I_LOGFILE_MODE),       &settings.logfile_mode,     NULL),
+	MENUITEM_LAUNCH( MENUPAGE_DEVEL_SCRSHOT,       LP_WORD(L_I_TAKE_SCREENSHOT),    take_screenshot),
 #ifdef MEM_DUMP
 	MENUITEM_LAUNCH( MENUPAGE_DEVEL_MEMORY,        LP_WORD(L_I_DUMP_MEMORY),         dump_memory_after_5s),
 #endif
